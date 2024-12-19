@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copiar Chave Pix - Drogaria Ultralara</title>
+    <style>
+        /* Resetando a margem e o preenchimento padrão */
+        body, h3, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilo geral da página */
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            /* Adicionando imagem de fundo com opacidade */
+            background: url('https://i.imgur.com/TXKfdYZ.png') no-repeat center center;
+            background-size: 15%; /* Tamanho pequeno da imagem */
+            background-attachment: fixed; /* Manter a imagem fixa ao rolar */
+            background-color: rgba(255, 255, 255, 0.9); /* Cor de fundo branca com opacidade */
+            position: relative;
+        }
+
+        /* Contêiner centralizado */
+        .container {
+            background-color: #fff; /* Cor de fundo do conteúdo */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            border: 2px solid #d48cd5; /* Cor de borda rosa suave */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+            z-index: 1; /* Garante que o conteúdo fique acima do fundo */
+        }
+
+        /* Título */
+        h3 {
+            color: #d48cd5; /* Tom de rosa suave */
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo do input da chave Pix */
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 18px;
+            text-align: center;
+            border: 2px solid #d48cd5; /* Borda rosa suave */
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: #b56aab; /* Tom de rosa mais escuro ao focar */
+            outline: none;
+        }
+
+        /* Estilo do botão */
+        button {
+            background-color: #d48cd5; /* Cor rosa suave */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #b56aab; /* Tom de rosa mais escuro ao passar o mouse */
+        }
+
+        /* Estilo do aviso de cópia */
+        .message {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #d48cd5;
+            display: none;
+        }
+
+        /* Estilo para a mensagem de agradecimento */
+        .thank-you {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+            font-style: italic;
+        }
+
+        /* Logo ou ícone da farmácia (opcional) */
+        .pill {
+            width: 60px; /* Tamanho fixo da pílula */
+            height: 60px; /* Tamanho fixo da pílula */
+            background-color: #d48cd5; /* Cor da pílula */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 15px; /* Distância entre a pílula e o título */
+        }
+
+        .pill img {
+            width: 100px; /* Aumento do tamanho do logo dentro da pílula para 100px */
+            height: 100px; /* Aumento do tamanho do logo dentro da pílula para 100px */
+            object-fit: contain; /* Garantir que a imagem se ajuste sem distorção */
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Pílula acima do título -->
+    <div class="pill">
+        <!-- Logo dentro da pílula com tag <img> -->
+        <img src="https://i.imgur.com/AiZrphH.png" alt="Logo Drogaria Ultralara">
+    </div>
+
+    <!-- Título da página -->
+    <h3>Drogaria Ultralara</h3>
+    
+    <!-- Campo da chave Pix com a chave nova -->
+    <input type="text" value="26515182000127" id="pixKey" readonly>
+    
+    <!-- Botão de copiar -->
+    <button onclick="copyPixKey()">Copiar Chave Pix</button>
+    
+    <!-- Mensagem de confirmação -->
+    <p class="message" id="copyMessage">Chave Pix copiada com sucesso!</p>
+
+    <!-- Mensagem de agradecimento -->
+    <p class="thank-you">A Ultralara agradece sua preferência!</p>
+</div>
+
+<script>
+    function copyPixKey() {
+        var copyText = document.getElementById("pixKey");
+        
+        // Usando a API moderna de Clipboard
+        navigator.clipboard.writeText(copyText.value).then(function() {
+            // Mostrar mensagem de confirmação
+            var message = document.getElementById("copyMessage");
+            message.style.display = "block"; // Mostrar a mensagem
+            setTimeout(function() {
+                message.style.display = "none"; // Esconder após 3 segundos
+            }, 3000);
+        }).catch(function(error) {
+            console.error('Falha ao copiar a chave Pix: ', error);
+        });
+    }
+</script>
+
+</body>
+</html>
